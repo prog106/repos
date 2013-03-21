@@ -72,6 +72,7 @@ class SimpleImage {
             chmod($filename, $permissions);
         }
     }
+}
 /*
 * $image = new SimpleImage();
 * $image->load($_FILES['uploaded_image']['tmp_name']);
@@ -81,5 +82,4 @@ class SimpleImage {
 * $name = $_POST['name']; or time();
 * $image->save($name.$this->ext);
 */
-}
 ?>
