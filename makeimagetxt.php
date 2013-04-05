@@ -1,4 +1,51 @@
 ﻿<?
+// make jpeg image from text
+class makeJpeg {
+    
+    //static $font = "./font/NanumGothic.ttf";
+    static $font = "./font/arial.ttf";
+    
+    function param_check($param) {
+        $param_array = array(fontsize, bgcolor, color, width, height, text);
+        foreach($param_array as $row) {
+            if(!$param[$row]) {
+                return false;
+                break;
+            }
+        }
+        return true;
+    }
+    
+    function makeimagejpeg($param) {
+        if(!param_check($param)) {
+            $msg = "params error : fontsize, bgcolor, color[white, black], width, height, text";
+            json_encode($msg);
+            die;
+        }
+        $image = imagecreate($param['width'], $param['height']);
+        $white = imagecolorallocate($image, 255, 255, 255);
+        $black = imagecolorallocate($image, 0, 0, 0);
+        imagefilledrectangle($image, 0, 0, $param['width'], $param['height'], $$param['bgcolor']); // make angle
+
+        imagettftext($image, $param['fontsize'], 0, 0, 0, $$param['color'], $font, $param['text']); // make text
+        $imgsrc = "./img/".$param['text'].".jpg";
+        imagejpeg($image, $imgsrc, 85);
+        return $imgsrc;
+    }
+
+}
+$param['fontsize'] = 12px;
+$param['bgcolor'] = "white";
+$param['color'] = "black";
+$param['width'] = "100";
+$param['height'] = "30";
+$param['text'] = "welcome";
+echo makeJpeg::makeimagejpeg($param);
+die;
+
+makepngimage($param);
+
+die;
 $fontsize = 12;
 $font = "./font/arial.ttf";
 $text = "4567";
@@ -17,37 +64,4 @@ imagettftext($image, $fontsize, 0, 20, $fontsize+20, $black, $font, $text);
 imagejpeg($image, "./img/".$text.".jpg", 85);
 
 die;
-
-$text = "1234";
-$font = "./font/arial.ttf";
-
-imagettftext($im, 36, 0, 0, 35, $color, $font, $text);
-imagepng($im, "./img/".$text.".png", 100);
-
-//imagedestroy($im);
-die;
-// make png image from text
-class makePng {
-/*
-* 1. text check
-* 2. image info check
-* 3. make png image
-* 4. save png image
-* 5. return png image url
-*/
-    function check_text($txt) {
-    // 
-        return true;
-    }
-
-    function image_info($param) {
-        return true;
-    }
-    
-    
-}
-
-$param['text'] = "";
-
-makepngimage($param);
 ?>
