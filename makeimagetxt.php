@@ -6,14 +6,14 @@ function makeimagejpeg($param) {
     $black = imagecolorallocate($image, 0, 0, 0);
     imagefilledrectangle($image, 0, 0, $param['width'], $param['height'], $$param['bgcolor']); // make angle
 
-    imagettftext($image, $param['fontsize'], 0, 10, 10, $$param['color'], $param['font'], $param['text']); // make text
+    imagettftext($image, $param['fontsize'], 0, 10, $param['fontsize'] + 10, $$param['color'], $param['font'], $param['text']); // make text
     $imgsrc = "./img/".$param['text'].".jpg";
     imagejpeg($image, $imgsrc, 85);
     return $imgsrc;
 }
 
 $param['font'] = "./font/arial.ttf";
-$param['fontsize'] = "12";
+$param['fontsize'] = "10";
 $param['bgcolor'] = "white";
 $param['color'] = "black";
 $param['width'] = "100";
