@@ -1,10 +1,22 @@
 ﻿<?
-$im = imagecreatetruecolor(130, 36);
+$fontsize = 12;
+$font = "./font/arial.ttf";
+$text = "4567";
+
+$size = imagettfbbox($fontsize, 0, $font, $text);
+$xsize = abs($size[0]) + abs($size[2]) + 20;
+$ysize = abs($size[5]) + abs($size[1]) + 20;
+
+$image = imagecreate($xsize, $ysize);
 
 $white = imagecolorallocate($im, 255, 255, 255);
-$color = imagecolorallocate($im, 204, 210, 228);
 $black = imagecolorallocate($im, 0, 0, 0);
-imagefilledrectangle($im, 0, 0, 129, 35, $white);
+imagefilledrectangle($image, 0, 0, $xsize, $ysize, $white);
+
+imagettftext($image, $font, 0, 20, $fsize+20, $black, $font, $text);
+imagejpeg($image, "./img/".$text.".jpg", 85);
+
+die;
 
 $text = "1234";
 $font = "./font/arial.ttf";
