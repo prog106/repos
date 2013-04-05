@@ -9,7 +9,7 @@ function makeimagejpeg($type, $param) {
 
     imagettftext($image, $param['fontsize'], 0, 10, $param['fontsize'] + 10, $$param['color'], $param['font'], $param['text']); // make text
     // imagettftext : image, fontsize, angle(0~90), x position, y position, color, font, text
-    if($type == 'png') {
+    if($type == 'png') { // error
         $imgsrc = "./img/".$param['text']."_".$now.".png";
         imagepng($image, $imgsrc, 85);
     } else {
@@ -26,6 +26,6 @@ $param['color'] = "black";
 $param['width'] = "100";
 $param['height'] = "30";
 $param['text'] = "welcome";
-$type = ($_GET['type'])?:'jpeg';
+$type = "jpeg";
 echo makeimagejpeg($type, $param); 
 ?>
