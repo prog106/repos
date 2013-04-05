@@ -9,11 +9,11 @@ $ysize = abs($size[5]) + abs($size[1]) + 20;
 
 $image = imagecreate($xsize, $ysize);
 
-$white = imagecolorallocate($im, 255, 255, 255);
-$black = imagecolorallocate($im, 0, 0, 0);
+$white = imagecolorallocate($image, 255, 255, 255);
+$black = imagecolorallocate($image, 0, 0, 0);
 imagefilledrectangle($image, 0, 0, $xsize, $ysize, $white);
 
-imagettftext($image, $font, 0, 20, $fsize+20, $black, $font, $text);
+imagettftext($image, $fontsize, 0, 20, $fontsize+20, $black, $font, $text);
 imagejpeg($image, "./img/".$text.".jpg", 85);
 
 die;
