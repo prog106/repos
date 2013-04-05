@@ -1,46 +1,25 @@
 ﻿<?
 // make jpeg image from text
-class makeJpeg {
-    
-    //static $font = "./font/NanumGothic.ttf";
-    static $font = "./font/arial.ttf";
-    
-    function param_check($param) {
-        $param_array = array(fontsize, bgcolor, color, width, height, text);
-        foreach($param_array as $row) {
-            if(!$param[$row]) {
-                return false;
-                break;
-            }
-        }
-        return true;
-    }
-    
-    function makeimagejpeg($param) {
-        if(!param_check($param)) {
-            $msg = "params error : fontsize, bgcolor, color[white, black], width, height, text";
-            json_encode($msg);
-            die;
-        }
-        $image = imagecreate($param['width'], $param['height']);
-        $white = imagecolorallocate($image, 255, 255, 255);
-        $black = imagecolorallocate($image, 0, 0, 0);
-        imagefilledrectangle($image, 0, 0, $param['width'], $param['height'], $$param['bgcolor']); // make angle
+function makeimagejpeg($param) {
+    $image = imagecreate($param['width'], $param['height']);
+    $white = imagecolorallocate($image, 255, 255, 255);
+    $black = imagecolorallocate($image, 0, 0, 0);
+    imagefilledrectangle($image, 0, 0, $param['width'], $param['height'], $$param['bgcolor']); // make angle
 
-        imagettftext($image, $param['fontsize'], 0, 0, 0, $$param['color'], $font, $param['text']); // make text
-        $imgsrc = "./img/".$param['text'].".jpg";
-        imagejpeg($image, $imgsrc, 85);
-        return $imgsrc;
-    }
-
+    imagettftext($image, $param['fontsize'], 0, 0, 0, $$param['color'], $param['font'], $param['text']); // make text
+    $imgsrc = "./img/".$param['text'].".jpg";
+    imagejpeg($image, $imgsrc, 85);
+    return $imgsrc;
 }
-$param['fontsize'] = 12px;
+
+$param['font'] = "./font/arial.ttf";
+$param['fontsize'] = "12";
 $param['bgcolor'] = "white";
 $param['color'] = "black";
 $param['width'] = "100";
 $param['height'] = "30";
 $param['text'] = "welcome";
-echo makeJpeg::makeimagejpeg($param);
+echo makeimagejpeg($param);
 die;
 
 makepngimage($param);
