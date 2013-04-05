@@ -1,5 +1,4 @@
 ﻿<?
-header('Content-Type: image/png');
 $im = imagecreatetruecolor(130, 36);
 
 $white = imagecolorallocate($im, 255, 255, 255);
@@ -11,8 +10,9 @@ $text = "1234";
 $font = "./font/arial.ttf";
 
 imagettftext($im, 36, 0, 0, 35, $color, $font, $text);
-imagepng($im);
-imagedestroy($im);
+imagepng($im, "./img/".$text.".png", 100);
+
+//imagedestroy($im);
 die;
 // make png image from text
 class makePng {
