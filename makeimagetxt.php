@@ -1,6 +1,6 @@
 ﻿<?
 // make jpeg image from text
-function makeimagejpeg($type, $param) {
+function makeimagejpeg($param) {
     $now = time();
     $image = imagecreate($param['width'], $param['height']);
     $white = imagecolorallocate($image, 255, 255, 255); // white color rgb
@@ -9,13 +9,10 @@ function makeimagejpeg($type, $param) {
 
     imagettftext($image, $param['fontsize'], 0, 10, $param['fontsize'] + 10, $$param['color'], $param['font'], $param['text']); // make text
     // imagettftext : image, fontsize, angle(0~90), x position, y position, color, font, text
-    if($type == 'png') { // error
-        $imgsrc = "./img/".$param['text']."_".$now.".png";
-        imagepng($image, $imgsrc, 85);
-    } else {
-        $imgsrc = "./img/".$param['text']."_".$now.".jpg";
-        imagejpeg($image, $imgsrc, 85);
-    }
+
+    $imgsrc = "./img/".$param['text']."_".$now.".jpg";
+    imagejpeg($image, $imgsrc, 85);
+
     return $imgsrc;
 }
 
@@ -26,6 +23,6 @@ $param['color'] = "black";
 $param['width'] = "100";
 $param['height'] = "30";
 $param['text'] = "welcome";
-$type = "jpeg";
-echo makeimagejpeg($type, $param); 
+
+echo makeimagejpeg($param); 
 ?>
