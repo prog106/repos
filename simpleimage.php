@@ -1,6 +1,4 @@
-﻿<!DOCTYPE html>
-<html lang="utf8">
-<?
+﻿<?
 require_once "debug.php";
 class SimpleImage {
     var $image;
@@ -88,25 +86,4 @@ class SimpleImage {
 * $name = $_POST['name']; or time();
 * $image->save($name.$this->ext);
 */
-?>
-
-<?
-if(isset($_POST['submit']) && isset($_POST['widthsize'])) {
-    $image = new SimpleImage();
-    $image->load($_FILES['uploaded_image']['tmp_name']);
-    $image->resizeToWidth($_POST['widthsize']);
-    $name = ($_POST['name'])? $_POST['name'] : time() ;
-    $image->save("./img/".$name.$image->ext);
-    header("Location:./img/".$name.$image->ext);
-} else {
-?>
-image resize<br>
-<form action="simpleimage.php" method=post enctype="multipart/form-data">
-    image (only jpg image) : <input type="file" name="uploaded_image" /><br>
-    image resize width(px) : <input type="text" name="widthsize" /><br>
-    image name(only english & number) : <input type="text" name="name" /><br>
-    <input type="submit" name="submit" value="upload" />
-<form>
-<?
-}
 ?>
