@@ -1,5 +1,9 @@
 ﻿<?
-print_r($_POST);
+if($_POST) {
+    print_r($_POST);
+    print_r($_FILE);
+    die;
+}
 if(isset($_POST['submit']) && isset($_POST['widthsize'])) {
     require_once "simpleimage.php";
     $image = new SimpleImage();
