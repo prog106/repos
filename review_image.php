@@ -1,20 +1,4 @@
-﻿<?
-if($_POST) {
-    print_r($_POST);
-    print_r($_FILE);
-    die;
-}
-if(isset($_POST['submit']) && isset($_POST['widthsize'])) {
-    require_once "simpleimage.php";
-    $image = new SimpleImage();
-    $image->load($_FILES['uploaded_image']['tmp_name']);
-    $image->resizeToWidth($_POST['widthsize']);
-    $name = ($_POST['name'])? $_POST['name'] : time() ;
-    $image->save("./img/".$name.$image->ext);
-    header("Location:./img/".$name.$image->ext);
-}
-?>
-<!-- view image before image upload -->
+﻿<!-- view image before image upload -->
 <script src="js/jquery-1.9.1.min.js"></script>
 <script type="text/javascript">
     function readURL(input) {
@@ -35,7 +19,7 @@ if(isset($_POST['submit']) && isset($_POST['widthsize'])) {
         <img id="review" src="#" alt="your image" />
     </form>
     <br><br>
-    ajax file upload <br>
+    ajax file upload : fail<br>
     <form>
     <input type="file" id="file" name="file" size="10"/>
     <input id="uploadbutton" type="button" value="Upload"/>
@@ -51,8 +35,8 @@ if(isset($_POST['submit']) && isset($_POST['widthsize'])) {
                     data: {
                         file: filename
                     },
-                    success: function () {
-                        alert("Data Uploaded: ");
+                    success: function (result) {
+                        alert("Data Uploaded: " + result);
                     }
                 });
             });
