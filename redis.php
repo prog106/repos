@@ -1,4 +1,4 @@
-<?
+﻿<?
 // Predis 
 require_once 'Predis/Autoloader.php';
 

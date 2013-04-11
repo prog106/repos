@@ -1,4 +1,4 @@
-<?
+﻿<?
 if(!function_exists('debug_log')) {
     function debug_log($var) {
         ob_start();

@@ -1,4 +1,4 @@
-<?
+﻿<?
 $rss_url = "rss_simple.php";
 
 function object2array($object) {
