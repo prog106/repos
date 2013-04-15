@@ -6,7 +6,7 @@ if(!function_exists('debug_log')) {
         $str = ob_get_clean();
         $str = "\n".$str."\n".date('Y-m-d H:i:s');
         
-        $fp = fopen('~/logs/debuglog', 'a');
+        $fp = fopen('/home/prog106/logs/debuglog', 'a');
         fputs($fp, $str);
         fclose($fp);
     }

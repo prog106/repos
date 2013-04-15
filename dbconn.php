@@ -353,7 +353,7 @@ key `read_date` (`read_date`)
 
 */
 
-$db = new MySQL('db', 'test', 'test123');
+$db = new MySQL('test1', 'test1', 'test123', 'localhost');
 
 $params = array(
     'site_code' => 'prog106',

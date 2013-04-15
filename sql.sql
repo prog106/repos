@@ -45,4 +45,4 @@ primary key (`id`),
 key `site_id` (`site_id`),
 key `d_st_date` (`d_st_date`),
 key `d_ed_date` (`d_ed_date`)
-) engine=innodb charset=utf8 comment='batch log';
+) engine=innodb charset=utf8 comment='rss data';
