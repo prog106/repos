@@ -352,7 +352,7 @@ key `read_date` (`read_date`)
 
 
 */
-
+/*
 $db = new MySQL('test1', 'test1', 'test123', 'localhost');
 
 $params = array(
@@ -364,5 +364,5 @@ $db->Insert($params, 'cron_data');
 
 $result = $db->Select('cron_data');
 print_r($result);
-
+*/
 ?>
