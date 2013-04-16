@@ -5,9 +5,10 @@ if(isset($_POST['submit']) && isset($_POST['widthsize'])) {
     require_once "simpleimage.php";
     $image = new SimpleImage();
     $image->load($_FILES['uploaded_image']['tmp_name']);
-    $image->resizeToWidth($_POST['widthsize']);
-    $name = ($_POST['name'])? $_POST['name'] : time() ;
-    $image->save("./img/".$name.$image->ext);
+    $image->crop_save($_POST['name'], '100', '50');
+    //$image->resizeToWidth($_POST['widthsize']);
+    //$name = ($_POST['name'])? $_POST['name'] : time() ;
+    //$image->save("./img/".$name.$image->ext);
     header("Location:./img/".$name.$image->ext);
 } else {
 ?>
