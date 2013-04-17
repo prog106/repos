@@ -1,0 +1,10 @@
+<?
+function javascript() {
+?>
+<script>
+
+</script>
+<?
+}
+?>
+
