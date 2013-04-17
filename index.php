@@ -1,11 +1,9 @@
 <?
 require_once "common/layout.inc";
 head('welcome');
-?>
 
-hellow world!
+include "template/rss_list.inc";
 
-<?
 javascript();
 footer();
 ?>
