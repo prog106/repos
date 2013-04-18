@@ -52,7 +52,7 @@ class MySQL {
 		$this->database = $info[$connect_info]['database'];
 		$this->username = $info[$connect_info]['username'];
 		$this->password = $info[$connect_info]['password'];
-		$this->hostname = $info[$connect_info]['localhost'];
+		$this->hostname = $info[$connect_info]['hostname'];
 
 		$this->Connect();
 	}
@@ -311,6 +311,10 @@ class MySQL {
 		}
 		return $this->arrayedResult;
 	}
+
+    function LastInsertId() {
+        return mysql_insert_id();
+    }
 }
 
 /*

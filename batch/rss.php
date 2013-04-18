@@ -13,18 +13,29 @@ $xmlread = file_get_contents($rss_url);
 $xmls = object2array(simplexml_load_string($xmlread, 'SimpleXMLElement', LIBXML_NOCDATA));
 $rows = $xmls['Items']['Item'];
 
-$msg = "batch start ".$now_date."\n";
+$msg = "batch start : ".$now_date."\n";
+
+$db = new MySQL();
+
+$params = array(
+    'site_code' => 'tmon',
+    'site' => $rss_url,
+    'status' => 'S', // start
+    'read_date' => date('Y-m-d H:i:s'),
+);
+$db->Insert($params, 'cron_data');
+$srl = $db->LastInsertId();
 
 if($rows) {
-    $db = new MySQL();
     $cnt = 0;
     foreach($rows as $row) {
         $params = array(
+            'cron_id' => $srl,
             'd_no' => $row['ItemID'],
             'd_name' => $row['ItemName'],
             'd_desc1' => $row['ItemDesc'],
             'd_desc2' => $row['ItemDesc2'],
-            'd_url' => $row['ItemURL']
+            'd_url' => $row['ItemURL'],
 //            'd_murl' => $row['Item'],
             'd_img1' => $row['ItemImageURL'],
             'd_img2' => $row['ItemImageURL2'],
@@ -49,18 +60,16 @@ if($rows) {
             'd_vendor_phone2' => $row['ShopPhone2'],
             'd_vendor_addr' => $row['ShopAddr'],
             'd_vendor_lat' => $row['ShopLat'],
-            'd_vendor_lng' => $row['ShopLng'],
+            'd_vendor_lng' => $row['ShopLng']
         );
         $db->Insert($params, 'rss_data');
-//        print_r($params);
-//        if($i > 2) break; else $i++;
         $cnt++;
     }
-    
-    $result = $db->Select('rss_data');
-//    print_r($result);
 }
 
-$msg .= "batch end | cnt : ".$cnt.";
+$status_param = ($cnt>0) ? array('status' => 'Y', 'count' => $cnt) : array('status' => 'N');
+$db->Update('cron_data', $status_param, array('id' => $srl));
+
+$msg .= "batch end | cnt : ".$cnt;
 debug_log($msg, 'batch');
 ?>

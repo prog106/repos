@@ -1,6 +1,6 @@
 <?
 // common
 require_once "debug.php";
-$nowdate = data('Y-m-d H:i:s');
-$nowtime = time();
+$now_date = date('Y-m-d H:i:s');
+$now_time = time();
 ?>
