@@ -1,6 +1,11 @@
 <?
 require_once "db.inc";
 
-$db = new MySQL('test1', 'test1', 'test123', 'localhost');
-$result = $db->Select('rss_data');
+class RSS {
+    function rsslist() {
+        $db = new MySQL();
+        $result = $db->Select('rss_data');
+        return $result;
+    }
+}
 ?>
