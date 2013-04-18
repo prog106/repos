@@ -1,4 +1,5 @@
 <?
+require_once "common/common.inc";
 require_once "common/layout.inc";
 head('welcome');
 
