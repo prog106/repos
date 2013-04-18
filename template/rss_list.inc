@@ -5,7 +5,7 @@ $result = RSS::rsslist();
 
 foreach($result as $row) {
 ?>
-<?=$row['d_no'];?> : <?=$row['d_name'];?><br>
+<?=$row['d_no'];?> : <?=$row['d_name'];?> : <?=$row['d_ItemURL'];?><br>
 <?
 }
 ?>
