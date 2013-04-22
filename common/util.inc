@@ -27,7 +27,7 @@ class Util {
         $page['totalcount'] = $totalCount;
         return $page;
     }
-    function cooking($name, $value, $expire='0', $path='/', $domain='', $secure='false' $httponly='false') {
+    function cookie($name, $value, $expire='0', $path='/', $domain='', $secure='false', $httponly='false') {
         $result = true;
         setcookie($name, $value, $expire, $path, $domain, $secure, $httponly);
         if($_COOKIE[$name] != $value) $result = false;
