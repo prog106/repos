@@ -1,7 +1,7 @@
 <?
-class Paging {
-    function Paging($viewPage, $totalCount, $countPerPage=10, $viewPerPage=10) {
-        if($totalPage * 1) < 1) $totalPage = 10;
+class Util {
+    function paging($viewPage, $totalCount, $countPerPage=10, $viewPerPage=10) {
+        if(($totalCount * 1) < 1) $totalCount = 10;
         
         $page['first'] = 1;
         $page['last'] = ($totalCount > 0) ? ceil($totalCount / $countPerPage) : 1;
@@ -14,7 +14,7 @@ class Paging {
         if($page['end'] > $page['last']) $page['end'] = $page['last'];
         
         $page['prev'] = $page['start'] - 1;
-        if($page['prev < 1) $page['prev'] = 1;
+        if($page['prev'] < 1) $page['prev'] = 1;
         
         $page['next'] = $page['end'] + 1;
         if($page['next'] > $page['last']) $page['next'] = $page['last'];
@@ -25,6 +25,14 @@ class Paging {
         }
         
         $page['totalcount'] = $totalCount;
+        return $page;
+    }
+    function cooking($name, $value, $expire='0', $path='/', $domain='', $secure='false' $httponly='false') {
+        $result = true;
+        setcookie($name, $value, $expire, $path, $domain, $secure, $httponly);
+        if($_COOKIE[$name] != $value) $result = false;
+        return $result;
     }
 }
+
 ?>
