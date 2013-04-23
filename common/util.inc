@@ -27,6 +27,20 @@ class Util {
         $page['totalcount'] = $totalCount;
         return $page;
     }
+
+    function paging_view($page) {
+        $html = $page['first']." | ";
+        $html .= $page['prev']." | ";
+        foreach($page['pageList'] as $row) {
+            if($page['current'] == $row) $html .= "<b>";
+            $html .= $row." | ";
+            if($page['current'] == $row) $html .= "</b>";
+        }
+        $html .= $page['next']." | ";
+        $html .= $page['last'];
+        return $html;
+    }
+
     function cookie($name, $value, $expire='0', $path='/', $domain='', $secure='false', $httponly='false') {
         $result = true;
         setcookie($name, $value, $expire, $path, $domain, $secure, $httponly);
