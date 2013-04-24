@@ -3,8 +3,8 @@ require_once "script.inc";
 function head($title='couponeda') {
     $v = time();
 ?>
-<!doctype html>
-<html lang="ko">
+<!DOCTYPE html>
+<html lang="kr">
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -13,6 +13,7 @@ function head($title='couponeda') {
 <script src="js/layout.js"></script>
 <script src="js/jquery-1.9.1.min.js"></script>
 <script src="js/jquery.uploadify.min.js"></script>
+<script> $.jQTouch(); </script>
 </head>
 <body>
 <?
