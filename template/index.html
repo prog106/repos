@@ -98,6 +98,20 @@
 
       <hr>
 
+<?
+$loop = 1;
+foreach($result as $row) {
+if($loop % 3 == 1) echo "<div class=\"row-fluid\">";
+?>    
+        <div class="span4">
+            <p><?=$row['d_name'];?></p>
+            <p><img src="<?=$row['d_img3'];?>" width="250"></p>
+        </div>
+<?
+if($loop % 3 == 0) echo "</div>";
+$loop++;
+}
+?>
       <!-- Example row of columns -->
       <div class="row-fluid">
         <div class="span4">
@@ -116,6 +130,7 @@
           <p><a class="btn" href="#">View details &raquo;</a></p>
         </div>
       </div>
+      <!-- Example row of columns -->
 
       <hr>
 
