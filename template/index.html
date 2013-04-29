@@ -104,8 +104,9 @@ foreach($result as $row) {
 if($loop % 3 == 1) echo "<div class=\"row-fluid\">";
 ?>    
         <div class="span4">
-            <p><?=$row['d_name'];?></p>
-            <p><img src="<?=$row['d_img3'];?>" width="250"></p>
+            <p><img src="<?=$row['d_img3'];?>" width="300" class="img-polaroid"></p>
+            <p style="width:210px"><?=$row['d_name'];?></p>
+            <p><a class="btn btn-small" href="#">Detail View Go <i class="icon-ok"></i> </a></p>
         </div>
 <?
 if($loop % 3 == 0) echo "</div>";
