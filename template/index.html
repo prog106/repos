@@ -101,22 +101,49 @@
 <?
 $loop = 1;
 foreach($result as $row) {
-if($loop % 3 == 1) echo "<div class=\"row-fluid\">";
+$sell_per = (int)(($row['d_now_sell_cnt']/$row['d_max_sell_cnt']) * 100);
+$end_date = substr($row['d_ed_date'],0,10);
+if($loop % 2 == 1) echo "<div class=\"row-fluid\">";
 ?>    
-        <div class="span4">
-            <p style="height:310px;"><img src="<?=$row['d_img3'];?>" class="img-polaroid"></p>
-            <p style="margin-left:-5px"><textarea row="2" style="width:310px;border:none"><?=$row['d_name'];?>
-
-<?=$row['d_desc2'];?></textarea></p>
-            <p><a class="btn btn-small" href="#">Detail View Go <i class="icon-ok"></i> </a></p>
+        <div class="span6">
+            <table class="table table-hover">
+                <tr>
+                    <td width="200" style="border-top:0px">
+                        <a href="#"><img src="<?=$row['d_img1'];?>" class="img-polaroid"></a>
+                    </td>
+                    <td style="border-top:0px">
+                        <div class="progress progress-warning progress-striped active" style="height:12px"><div class="bar" style="width:<?=$sell_per;?>%"></div></div>
+                        <b><?=$row['d_name'];?></b><br>
+                        <?=$row['d_desc2'];?><p>
+                        <p>[ ~ <?=$end_date;?> , total : <?=number_format($row['d_max_sell_cnt']);?>]</p>
+                    </td>
+                </tr>
+            </table>
         </div>
 <?
-if($loop % 3 == 0) echo "</div>";
+if($loop % 2 == 0) echo "</div>";
 $loop++;
 }
 ?>
       <!-- Example row of columns -->
       <div class="row-fluid">
+        <div class="span6">
+          <h2>Heading</h2>
+          <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+          <p><a class="btn" href="#">View details &raquo;</a></p>
+        </div>
+        <div class="span6">
+          <h2>Heading</h2>
+          <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+          <p><a class="btn" href="#">View details &raquo;</a></p>
+       </div>
+      </div>
+      <!-- Example row of columns -->
+
+      <hr>
+
+      <!-- Example row of columns -->
+      <!-- div class="row-fluid">
         <div class="span4">
           <h2>Heading</h2>
           <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
@@ -132,7 +159,7 @@ $loop++;
           <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa.</p>
           <p><a class="btn" href="#">View details &raquo;</a></p>
         </div>
-      </div>
+      </div -->
       <!-- Example row of columns -->
 
       <hr>
