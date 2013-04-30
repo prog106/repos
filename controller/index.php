@@ -6,7 +6,7 @@ class IndexController {
         $cron_id = RSS::cronid();
         $totalcnt = RSS::rsscount($cron_id);
         $viewpage = ($_GET['page'])? : 1;
-        $countPerPage = 18;
+        $countPerPage = 27;
         $result = RSS::rsslist(($viewpage * $countPerPage) + 1, $countPerPage, $cron_id);
         $page = Util::paging($viewpage, $totalcnt, $countPerPage, '10');
         $param['result'] = $result;
