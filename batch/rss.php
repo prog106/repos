@@ -1,6 +1,7 @@
 ﻿<?
-require_once "../common/common.inc";
-require_once "../model/db.inc";
+$PATH = "/home/prog106/www/";
+require_once $PATH."common/common.inc";
+require_once $PATH."model/db.inc";
 
 // $rss_url = "rss_simple.php";
 $rss_url = "http://www.ticketmonster.co.kr/rss/daily/?scode=9889";
@@ -68,8 +69,8 @@ if($rows) {
     }
 }
 if($param) {
-        $pchart_root = "../pChart2.1.3/";
-        $graph_root = "../img/graph/";
+        $pchart_root = $PATH."pChart2.1.3/";
+        $graph_root = $PATH."img/graph/";
         require_once $pchart_root."class/pData.class.php";
         require_once $pchart_root."class/pDraw.class.php";
         require_once $pchart_root."class/pImage.class.php";
