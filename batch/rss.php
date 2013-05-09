@@ -64,7 +64,58 @@ if($rows) {
         );
         $db->Insert($params, 'rss_data');
         $cnt++;
+        $param[] = $row['ItemID'];
     }
+}
+if($param) {
+        $pchart_root = "../pChart2.1.3/";
+        $graph_root = "../img/graph/";
+        require_once $pchart_root."class/pData.class.php";
+        require_once $pchart_root."class/pDraw.class.php";
+        require_once $pchart_root."class/pImage.class.php";
+        foreach($param as $k) {
+            $r = array();
+            $v = array();
+            $sql = "SELECT d_now_sell_cnt as cnt FROM rss_data WHERE d_no = '".$k."' ORDER BY id ASC LIMIT 7";
+            $result = $db->ExecuteSQL($sql);
+            foreach($result as $s => $v) {
+                foreach($v as $m => $n) {
+                    $r[] = $n;
+                }
+            }
+            if(count($r) < 7) {
+                $merge = array_fill(0, (7 - count($r)), 0);
+                $v = array_merge($merge, $r);
+            } else {
+                $v = $r;
+            }
+            $usedata = ($v)? : array(0,0,0,0,0,0,0);
+            $xdata = array(6,5,4,3,2,1,0);
+            $pdata = new pData();
+            $pdata->setAxisName(0, "Sell Count"); // y label
+            $pdata->addPoints($xdata, "Labels");
+            $pdata->setSerieDescription("Labels", "Befor Hour");
+            $pdata->setAbscissa("Labels"); // x label
+
+            $pdata->addPoints($usedata, "line1");
+            $pdata->setPalette("line1", array("R"=>229, "G"=>11, "B"=>11, "Alpha"=>80));
+
+            $x = 170;
+            $y = 120;
+            $xstart = 25;
+            $xend = $x;
+            $ystart = 5;
+            $yend = $y - 15;
+
+            $chart = new pImage($x, $y, $pdata);
+            $chart->setFontProperties(array("FontName"=>$pchart_root."fonts/verdana.ttf", "FontSize"=>6));
+            $chart->setGraphArea($xstart, $ystart, $xend, $yend);
+            $chart->drawScale();
+            $chart->drawSplineChart();
+            $graph_name = $graph_root.$k;
+            $chart->Render($graph_name);
+            //$chart->autoOutput();
+        }
 }
 
 $status_param = ($cnt>0) ? array('status' => 'Y', 'count' => $cnt) : array('status' => 'N');
