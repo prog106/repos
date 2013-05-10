@@ -113,7 +113,7 @@ if($param) {
             $chart->setGraphArea($xstart, $ystart, $xend, $yend);
             $chart->drawScale();
             $chart->drawSplineChart();
-            $graph_name = $graph_root.$k;
+            $graph_name = $graph_root.$k.".png";
             $chart->Render($graph_name);
             //$chart->autoOutput();
         }
