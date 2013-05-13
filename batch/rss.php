@@ -77,13 +77,14 @@ if($param) {
         foreach($param as $k) {
             $r = array();
             $v = array();
-            $sql = "SELECT d_now_sell_cnt as cnt FROM rss_data WHERE d_no = '".$k."' ORDER BY id ASC LIMIT 7";
+            $sql = "SELECT d_now_sell_cnt as cnt FROM rss_data WHERE d_no = '".$k."' ORDER BY id DESC LIMIT 7";
             $result = $db->ExecuteSQL($sql);
             foreach($result as $s => $v) {
                 foreach($v as $m => $n) {
                     $r[] = $n;
                 }
             }
+            $r = array_reverse($r);
             if(count($r) < 7) {
                 $merge = array_fill(0, (7 - count($r)), 0);
                 $v = array_merge($merge, $r);
