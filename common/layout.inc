@@ -15,6 +15,7 @@ function head($title='couponeda') {
 <script src="js/bootstrap.js"></script>
 <script src="js/jquery-1.9.1.min.js"></script>
 <script src="js/jquery.uploadify.min.js"></script>
+<script src="js/jquery.countdown.js"></script>
 </head>
 <body>
 <?
