@@ -1,3 +1,4 @@
 - test/
 - exclude.list
 - *.swp
+- .DS_Store
